@@ -22,7 +22,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   */
 
   // Modify the line of code BELOW to run a different exercise
-  exercise_01();
+  exercise_03();
   // Modify the line of code ABOVE to run a different exercise
 }
 
@@ -42,10 +42,26 @@ function exercise_01() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
-
-  // CODE IN THE OPEN LINES ABOVE
+//Synchronous function
+function logSync() {
+  for (let i = 1; i <= 5; i++) {
+    console.log(i);
+  }
 }
+//Asynchronous function
+function logAsync() {
+  for (let i = 1; i <= 5; i++) {
+    setTimeout(() => {
+      console.log(i);
+    }, i * 1000);
+  }
+}
+
+logSync();
+logAsync();
+}
+  // CODE IN THE OPEN LINES ABOVE
+
 
 function exercise_02() {
   /* 
@@ -61,8 +77,15 @@ function exercise_02() {
   */
   // CODE IN THE OPEN LINES BELOW
 
-  let placeholder = "Delete me and code here";
+  function fetchData(callback) {
+    setTimeout(() => {
+      callback("Data fetched successfully");
+    }, 2000);
+  }
 
+  fetchData((data) => {
+    console.log(data);
+  });
   // CODE IN THE OPEN LINES ABOVE
 }
 
@@ -80,8 +103,31 @@ function exercise_03() {
   
   */
   // CODE IN THE OPEN LINES BELOW
+//Simulates reading a file asychronously
+function readFile(filename, callback) {
+  setTimeout(() => {
 
-  let placeholder = "Delete me and code here";
+    //check if file name is correct
+    if (filename === "data.txt") {
+
+      //Success: no error, return file content
+      callback(null, "File content");
+    } else {
+      //Error: return error message
+      callback("Error: File not found", null);
+    }
+  }, 1000);
+}
+
+//Test Success Case
+readFile("data.txt", (error, data) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(data);
+  }
+})
+
 
   // CODE IN THE OPEN LINES ABOVE
 }
